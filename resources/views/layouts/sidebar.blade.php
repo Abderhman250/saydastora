@@ -1,18 +1,18 @@
 <div id="accordian">
     <ul class="show-dropdown">
         <li>
-            <a href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+            <a href="/home"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
         </li>
         <li>
-            <a href="javascript:void(0);"><i class="far fa-address-book"></i>Address Book</a>
-            <ul>
+            <a href="/users"><i class="far fa-address-book"></i>Users</a>
+            {{-- <ul>
                 <li><a href="javascript:void(0);">Reports</a></li>
                 <li><a href="javascript:void(0);">Search</a></li>
                 <li><a href="javascript:void(0);">Graphs</a></li>
                 <li><a href="javascript:void(0);">Settings</a></li>
-            </ul>
+            </ul> --}}
         </li>
-        <li class="active">
+        <li>
             <a href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
             <ul class="show-dropdown">
                 <li><a href="javascript:void(0);">Today's tasks</a></li>

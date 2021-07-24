@@ -65,21 +65,49 @@ class UserController extends Controller
         return response()->json(['success' => $user], $this-> successStatus);
     }
 
-    public function createRandomCode() {
+    public function index()
+    {
+        $users = User::all()->where('role','user');
 
-        $chars = "abcdefghijkmnopqrstuvwxyz023456789";
-        srand((double)microtime()*1000000);
-        $i = 0;
-        $pass = '' ;
+        return view('admin.users.index',['users'=>$users]);
+    }
 
-        while ($i <= 7) {
-            $num = rand() % 33;
-            $tmp = substr($chars, $num, 1);
-            $pass = $pass . $tmp;
-            $i++;
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        if($user){
+        return view('admin.users.edit',['user'=>$user]);
+
         }
-        dd($pass);
-        return $pass;
+        return view('admin.users');
+
+
+    }
+     public function delete($id)
+    {
+            $user = User::findOrFail($id);
+            if($user){
+                $user->delete();
+            return redirect('/users')->with('error','User Delete Successfully.');
+
+            }
+    }
+
+    public function update(Request $request ,$id)
+    {
+        $user = User::findOrFail($id);
+        if($user){
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->age = $request->age;
+            $user->status = $request->status;
+
+            $user->save();
+            return redirect('/users')->with('success','User Update Successfully.');
+
+        }
+        return redirect('/users')->with('error','User Update Failed.');
+
 
     }
 }

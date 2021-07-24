@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -46,6 +48,7 @@ class UserController extends Controller
                 }
         $input = $request->all();
                 $input['password'] = bcrypt($input['password']);
+                $input['referral_code'] = Str::random(6);
                 $user = User::create($input);
                 $success['token'] =  $user->createToken('MyApp')-> accessToken;
                 $success['user'] =  $user;
@@ -60,5 +63,23 @@ class UserController extends Controller
     {
         $user = Auth::user();
         return response()->json(['success' => $user], $this-> successStatus);
+    }
+
+    public function createRandomCode() {
+
+        $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+        srand((double)microtime()*1000000);
+        $i = 0;
+        $pass = '' ;
+
+        while ($i <= 7) {
+            $num = rand() % 33;
+            $tmp = substr($chars, $num, 1);
+            $pass = $pass . $tmp;
+            $i++;
+        }
+        dd($pass);
+        return $pass;
+
     }
 }

@@ -1,0 +1,3 @@
+
+ALTER TABLE `sayd_astora`.`users`
+CHANGE COLUMN `referral_code` `referral_code` TEXT COLLATE 'utf8mb4_unicode_ci' NULL ;

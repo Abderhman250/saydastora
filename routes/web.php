@@ -11,10 +11,17 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['admin'])->group(function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/users', 'API\UserController@index')->name('users');
+    Route::get('/users/edit/{id}', 'API\UserController@edit')->name('users.edit');
+    Route::get('/users/delete/{id}', 'API\UserController@delete')->name('users.delete');
+    Route::post('/users/update/{id}', 'API\UserController@update')->name('users.update');
+});
+Route::view('/', 'auth.login');
+

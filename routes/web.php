@@ -22,6 +22,12 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/users/edit/{id}', 'API\UserController@edit')->name('users.edit');
     Route::get('/users/delete/{id}', 'API\UserController@delete')->name('users.delete');
     Route::post('/users/update/{id}', 'API\UserController@update')->name('users.update');
+
+    Route::get('/questions/create', 'QuestionsController@create')->name('question.create');
+    Route::post('/questions/store', 'QuestionsController@store')->name('question.store');
+    Route::post('/questions/correct_answer', 'QuestionsController@setCorrectAnswer')->name('question.correct_answer');
+    Route::get('/questions', 'QuestionsController@index')->name('question.index');
+
 });
 Route::view('/', 'auth.login');
 

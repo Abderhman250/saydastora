@@ -1,3 +1,18 @@
 
 ALTER TABLE `sayd_astora`.`users`
 CHANGE COLUMN `referral_code` `referral_code` TEXT COLLATE 'utf8mb4_unicode_ci' NULL ;
+
+---------------
+ALTER TABLE `sayd_astora`.`questions`
+CHANGE COLUMN `correct_answer_id` `correct_answer_id` INT(10) UNSIGNED NULL ;
+-------------------------
+ALTER TABLE `sayd_astora`.`answers`
+CHANGE COLUMN `answer_1` `answer_1` TEXT NOT NULL ,
+CHANGE COLUMN `answer_2` `answer_2` TEXT NOT NULL ;
+CHANGE COLUMN `answer_3` `answer_3` TEXT NOT NULL ;
+--------------------------
+ALTER TABLE `sayd_astora`.`answers`
+DROP COLUMN `answer_3`,
+DROP COLUMN `answer_2`,
+CHANGE COLUMN `answer_1` `answer` TEXT COLLATE 'utf8mb4_unicode_ci' NOT NULL ;
+

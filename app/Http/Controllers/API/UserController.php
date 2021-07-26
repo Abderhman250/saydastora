@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\UserPoints;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Str;
@@ -109,5 +110,19 @@ class UserController extends Controller
         return redirect('/users')->with('error','User Update Failed.');
 
 
+    }
+
+    public function setUserPoint(Request $request)
+    {
+        if( Auth::user()){
+            $points = new UserPoints();
+            $points->user_id = Auth::user()->id;
+            $points->game_id = $request->game_id;
+            $points->points = $request->points;
+            $points->save();
+
+            return response()->json(['success' => Auth::user()], $this-> successStatus);
+
+        }
     }
 }

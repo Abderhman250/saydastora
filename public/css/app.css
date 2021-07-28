@@ -622,8 +622,8 @@ pre code {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: 15px;
-  margin-left: 15px;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
 .no-gutters {
@@ -6110,7 +6110,7 @@ a.badge-dark.focus {
 }
 
 .close {
-  /* float: right; */
+  float: right;
   font-size: 1.35rem;
   font-weight: 700;
   line-height: 1;

@@ -20,7 +20,20 @@ class QuestionsController extends Controller
 
     public function index()
     {
-        dd(Questions::all());
+        $questions = Questions::all();
+        if($questions){
+            $data = [] ;
+            foreach ($questions as $question) {
+                $data [] = [
+                    'question_id'=>$question->id,
+                    'question_title'=>$question->question,
+                    'question_correct_answer'=>$question->correct_answer,
+                    'question_status'=>$question->status ? 'Active' : 'Not Active',
+                ];
+            }
+        }
+            return view('admin.questions.index',['questions'=>$data]);
+
     }
 
     /**
@@ -104,9 +117,13 @@ class QuestionsController extends Controller
      * @param  \App\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function edit(Questions $questions)
+    public function edit($id)
     {
-        //
+        $question = Questions::findOrFail($id);
+        if($question){
+       return view('admin.questions.edit',['question'=>$question]);
+
+        }
     }
 
     /**

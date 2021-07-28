@@ -19,6 +19,6 @@ class Questions extends Model
 
     public function getCorrectAnswerAttribute()
     {
-        return $this->correct_answer_id ;
+        return Answers::where('id',$this->correct_answer_id)->first()->answer;
     }
 }

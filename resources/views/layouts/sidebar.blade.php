@@ -13,6 +13,15 @@
             </ul> --}}
         </li>
         <li>
+            <a href="/questions"><i class="far fa-address-book"></i>Questions & Answers</a>
+            {{-- <ul>
+                <li><a href="javascript:void(0);">Reports</a></li>
+                <li><a href="javascript:void(0);">Search</a></li>
+                <li><a href="javascript:void(0);">Graphs</a></li>
+                <li><a href="javascript:void(0);">Settings</a></li>
+            </ul> --}}
+        </li>
+        {{-- <li>
             <a href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
             <ul class="show-dropdown">
                 <li><a href="javascript:void(0);">Today's tasks</a></li>
@@ -96,7 +105,7 @@
         </li>
         <li>
             <a href="javascript:void(0);"><i class="far fa-heart"></i>Favorite</a>
-        </li>
+        </li> --}}
 
     </ul>
 </div>

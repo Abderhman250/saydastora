@@ -27,6 +27,8 @@ Route::middleware(['admin'])->group(function () {
     Route::post('/questions/store', 'QuestionsController@store')->name('question.store');
     Route::post('/questions/correct_answer', 'QuestionsController@setCorrectAnswer')->name('question.correct_answer');
     Route::get('/questions', 'QuestionsController@index')->name('question.index');
+    Route::get('/questions/edit/{id}', 'QuestionsController@edit')->name('question.edit');
+
 
 });
 Route::view('/', 'auth.login');

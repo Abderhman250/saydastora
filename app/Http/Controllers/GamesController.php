@@ -161,6 +161,7 @@ class GamesController extends Controller
 
     public function viewAdds(Request $request)
     {
+        // sdfgdsf sdgfsdfg sdfgsdfgsd sdfgsdfgsdf sdfgsdfg
         if(Auth::user()) {
             // want parameter from mobile to insure validations (if user complete the adds )
             session()->put('join.attempts',0);

@@ -1,20 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-@extends('layouts.sidebar')
 
 <div class="container">
         <div class="row">
-            <div class="flash-message">
+            <h3 style="padding: 10px;">Questions and Answers</h3>
 
-                @if(Session::has('error'))
-                <p class="alert alert-danger">{{ Session::get('error') }}</p>
-                @endif
-                @if(Session::has('success'))
-                <p class="alert alert-success">{{ Session::get('success') }}</p>
-                @endif
-            </div>
-            <div><a  href="/questions/create" class="btn btn-primary" style="float: right; margin: 4px">Add Question</a></div>
+            <div style="width: 100%"><a  href="/questions/create" class="btn btn-primary" style="float: right; margin: 4px">Add Question</a></div>
             <table class="table table-striped">
                 <thead>
                   <tr>

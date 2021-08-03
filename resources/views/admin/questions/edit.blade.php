@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    @extends('layouts.sidebar')
 
     <div class="container">
         {{-- action="/users/update/{{$user->id}}" method="POST" --}}
@@ -9,7 +8,7 @@
 
 
         <div class="edit-questions">
-            <form id="question-form">
+            <form id="question-form" method="POST" action="/questions/update/{{$question->id}}" >
                 @csrf
                 <div class="step-one row">
                     <div class="col-12">
@@ -28,7 +27,7 @@
                     </div>
                     <div class="col-12">
                         <label for="">Correct answer:
-                            <select name="status" id="status" class="form-control" required>
+                            <select name="correct_answer" id="status" class="form-control" required>
                                 @foreach ($question->answers as $answer)
 
                                     <option {{$question->correct_answer_id ==$answer->id ? 'selected' : ''}} value="{{$answer->id}}">{{$answer->answer}}</option>
@@ -51,7 +50,8 @@
         <div class="row answer">
             <h3>Edit Answers</h3>
             @foreach ($question->answers as $answer)
-                <form action="/answer/update/{{ $answer->id }}" method="POST">
+                <form action="/answer/update-answer/{{ $answer->id }}" method="POST">
+                @csrf
 
                     <label for="">Answer-{{ $i++ }}:
                         <input type="text" name="answer" id="" value="{{ $answer->answer }}" class="form-control"

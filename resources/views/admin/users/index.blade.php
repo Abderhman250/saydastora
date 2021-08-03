@@ -1,19 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-@extends('layouts.sidebar')
 
 <div class="container">
         <div class="row">
-            <div class="flash-message">
+            <h3 style="padding: 10px">Users</h3>
 
-                @if(Session::has('error'))
-                <p class="alert alert-danger">{{ Session::get('error') }}</p>
-                @endif
-                @if(Session::has('success'))
-                <p class="alert alert-success">{{ Session::get('success') }}</p>
-                @endif
-            </div>
             <table class="table table-striped">
                 <thead>
                   <tr>

@@ -39,11 +39,11 @@ body {
 }
 
 
-#accordian a {
+/* #accordian a {
 
 
 
-}
+} */
 
 
 i {
@@ -116,7 +116,7 @@ i {
 		transform: rotate(90deg);
 }
 .answer {
-    width: 550px;
+    width: 81%;
     background-color: #9bc4af;
     text-align: center;
     direction: rtl;
@@ -159,4 +159,32 @@ i {
 .popup-content.active {
     /*Shows pop-up content when "active" class is present */
     visibility: visible;
+}
+
+
+.advance-option
+{
+    cursor: pointer;
+    color: #EEE;
+    /* float: left; */
+    margin: 30px 0;
+    width: 80%;
+    text-align: left;
+    border: 1px solid #777;
+    border-radius: 8px;
+    padding: 5px 15px;
+}
+.advance-option h3 {
+    display: inline-block;
+}
+
+.advance-option img {
+    float: right;
+}
+.attributes {
+    padding: 15px 15px;
+
+}
+.attributes input{
+    width: 70%;
 }

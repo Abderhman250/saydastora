@@ -6,6 +6,7 @@ use App\Answers;
 use App\Questions;
 use Illuminate\Http\Request;
 use Validator;
+
 use Symfony\Component\Console\Question\Question;
 
 class QuestionsController extends Controller
@@ -133,9 +134,32 @@ class QuestionsController extends Controller
      * @param  \App\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Questions $questions)
+    public function update(Request $request,$id)
     {
-        //
+       $question = Questions::findOrFail($id);
+       if($question){
+           $question->question = $request->title;
+           $question->status = $request->status;
+           $question->correct_answer_id = $request->correct_answer;
+
+           $question->save();
+
+             return redirect('/questions/edit/'.$id)->with('success','Question updated Successfully.');
+
+
+       }
+    }
+
+    public function updateAnswer(Request $request, $id)
+    {
+        $answer = Answers::findOrFail($id);
+
+        if($answer){
+            $answer->answer = $request->answer;
+            $answer->save();
+            return redirect('/questions/edit/'.$answer->question->id)->with('success','Answer updated Successfully.');
+
+        }
     }
 
     /**
@@ -144,9 +168,14 @@ class QuestionsController extends Controller
      * @param  \App\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Questions $questions)
+    public function destroy($id)
     {
-        //
+        $question = Questions::findOrFail($id);
+        if($question){
+            $question->delete();
+            return redirect('/questions')->with('error','Question delete Successfully.');
+        }
+
     }
 
     public function setCorrectAnswer(Request $request)

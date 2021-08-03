@@ -21,6 +21,15 @@
                 <li><a href="javascript:void(0);">Settings</a></li>
             </ul> --}}
         </li>
+        <li>
+            <a href="javascript:void(0)"><i class="far fa-address-book"></i>Games</a>
+            <ul>
+                <li><a href="javascript:void(0);">Game</a></li>
+                {{-- <li><a href="javascript:void(0);">Search</a></li>
+                <li><a href="javascript:void(0);">Graphs</a></li>
+                <li><a href="javascript:void(0);">Settings</a></li> --}}
+            </ul>
+        </li>
         {{-- <li>
             <a href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
             <ul class="show-dropdown">

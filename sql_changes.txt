@@ -15,4 +15,7 @@ ALTER TABLE `sayd_astora`.`answers`
 DROP COLUMN `answer_3`,
 DROP COLUMN `answer_2`,
 CHANGE COLUMN `answer_1` `answer` TEXT COLLATE 'utf8mb4_unicode_ci' NOT NULL ;
+-----------------
+ALTER TABLE `sayd_astora`.`game_attributes`
+CHANGE COLUMN `points-per-try` `points_per_try` INT(10) UNSIGNED NOT NULL ;
 

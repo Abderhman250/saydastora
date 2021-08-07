@@ -145,7 +145,7 @@ class GamesController extends Controller
                     $data['can_join_game'] = false;
                     session()->put('join.adds', $adds + 1);
 
-                $data['questions'] = Questions::where('status',1)->with('answers')->get();
+                     $data['questions'] = Questions::where('status',1)->with('answers')->get();
 
                     return response()->json([$data], 200);
 

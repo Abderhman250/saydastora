@@ -130,6 +130,7 @@ class GamesController extends Controller
 
             if($game->status){
                 $data = [];
+
                 $data['user'] = Auth::user();
                 $attempts = session()->get('join.attempts', 0);
                 $adds = session()->get('join.adds', 0);
@@ -144,6 +145,8 @@ class GamesController extends Controller
                     $data['can_join_game'] = false;
                     session()->put('join.adds', $adds + 1);
 
+                $data['questions'] = Questions::where('status',1)->with('answers')->get();
+
                     return response()->json([$data], 200);
 
 
@@ -153,7 +156,7 @@ class GamesController extends Controller
 
                 $data['can_view_adds'] = true ;
                 $data['can_join_game'] = true ;
-                $data['questions'] = Questions::all();
+                $data['questions'] = Questions::with('answers')->all();
                 return response()->json([$data], 200);
 
 

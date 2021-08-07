@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Games;
 use App\GameAttribute;
+use App\Questions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -152,6 +153,7 @@ class GamesController extends Controller
 
                 $data['can_view_adds'] = true ;
                 $data['can_join_game'] = true ;
+                $data['questions'] = Questions::all();
                 return response()->json([$data], 200);
 
 

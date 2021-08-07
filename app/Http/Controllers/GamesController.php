@@ -156,7 +156,7 @@ class GamesController extends Controller
 
                 $data['can_view_adds'] = true ;
                 $data['can_join_game'] = true ;
-                $data['questions'] = Questions::with('answers')->all();
+                $data['questions'] = Questions::where('status',1)->with('answers')->get();
                 return response()->json([$data], 200);
 
 

@@ -21,12 +21,19 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+        $falg =false;
+
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')]))
+            $falg =true;
+        elseif(Auth::attempt(['email' => request('email'), 'name' => request('name')]))
+            $falg =true;
+
+
+        if($falg){  
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
             return response()->json(['success' => $success,'user'=>$user], $this-> successStatus);
-        }
-        else{
+        }else{
             return response()->json(['error'=>'Unauthorised'], 401);
         }
     }
@@ -36,7 +43,22 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request)
-    {
+    {    
+        $social_media  =false;
+        if($request->has('social_media'))
+            $social_media = $request->input('social_media');
+
+            $input = $request->all();
+
+        if($social_media){
+            $validator = Validator::make($request->all(), [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+              
+            ]);
+  
+        
+        }else{    
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -47,12 +69,13 @@ class UserController extends Controller
         if ($validator->fails()) {
                     return response()->json(['error'=>$validator->errors()], 401);
                 }
-        $input = $request->all();
                 $input['password'] = bcrypt($input['password']);
                 $input['referral_code'] = Str::random(6);
-                $user = User::create($input);
-                $success['token'] =  $user->createToken('MyApp')-> accessToken;
-                $success['user'] =  $user;
+    
+         }
+         $user = User::create($input);
+         $success['token'] =  $user->createToken('MyApp')-> accessToken;
+         $success['user'] =  $user;
         return response()->json(['success'=>$success], $this-> successStatus);
     }
 /**
